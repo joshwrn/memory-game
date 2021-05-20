@@ -12,40 +12,45 @@ import eight from '../img/eight.jpeg';
 import nine from '../img/nine.jpeg';
 import ten from '../img/ten.png';
 
-const initial = [
-  { imageSrc: one, imageName: 1, clicked: 'false' }, //start at 0
-  { imageSrc: two, imageName: 2, clicked: 'false' },
-  { imageSrc: three, imageName: 3, clicked: 'false' },
-  { imageSrc: four, imageName: 4, clicked: 'false' },
-  { imageSrc: five, imageName: 5, clicked: 'false' },
-  { imageSrc: six, imageName: 6, clicked: 'false' },
-  { imageSrc: seven, imageName: 7, clicked: 'false' },
-  { imageSrc: eight, imageName: 8, clicked: 'false' },
-  { imageSrc: nine, imageName: 9, clicked: 'false' },
-  { imageSrc: ten, imageName: 10, clicked: 'false' },
+let initial = [
+  { imageSrc: one, imageName: 0, clicked: false },
+  { imageSrc: two, imageName: 1, clicked: false },
+  { imageSrc: three, imageName: 2, clicked: false },
+  { imageSrc: four, imageName: 3, clicked: false },
+  { imageSrc: five, imageName: 4, clicked: false },
+  { imageSrc: six, imageName: 5, clicked: false },
+  { imageSrc: seven, imageName: 6, clicked: false },
+  { imageSrc: eight, imageName: 7, clicked: false },
+  { imageSrc: nine, imageName: 8, clicked: false },
+  { imageSrc: ten, imageName: 9, clicked: false },
 ];
 
 const CardFactory = () => {
   const [images, setImage] = useState(initial);
+  const [score, setScore] = useState(0);
 
-  useEffect(() => {
-    const newCards = [...images];
-    setImage(newCards);
-  }, []);
-
+  //? click
   const handleClick = (e) => {
-    const chosen = e.target.getAttribute('data-chosen');
-    const imageName = e.target.getAttribute('data-image-name');
-    console.log(chosen);
-    console.log(imageName);
-    console.log(images[imageName]);
     e.preventDefault();
-    setImage({
-      ...images,
-      [images[imageName]]: (images[imageName].clicked = true),
-    });
+    //+ elements
+    const chosen = e.target.getAttribute('data-chosen');
+    const imageNameAtt = e.target.getAttribute('data-image-name');
+    //+ get image index
+    const findImage = images.findIndex(
+      (image) => image.imageName === Number(imageNameAtt)
+    );
+    if (images[findImage].clicked === false) {
+      //+ set images with the correct index
+      setImage((old) => [...old], {
+        [images[findImage]]: (images[findImage].clicked = true),
+      });
+    } else {
+      console.log('you lose');
+    }
+    console.log(images);
   };
 
+  //? create cards
   let cards = images.map((item) => {
     return (
       <Card
