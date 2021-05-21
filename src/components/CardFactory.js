@@ -28,6 +28,15 @@ let initial = [
 const CardFactory = () => {
   const [images, setImage] = useState(initial);
   const [score, setScore] = useState(0);
+  //+ add score
+  function increment() {
+    setScore((prevCount) => prevCount + 1);
+  }
+
+  //+reset score
+  function reset() {
+    setScore((prevCount) => prevCount - prevCount);
+  }
 
   //? click
   const handleClick = (e) => {
@@ -44,8 +53,18 @@ const CardFactory = () => {
       setImage((old) => [...old], {
         [images[findImage]]: (images[findImage].clicked = true),
       });
+      increment();
     } else {
-      console.log('you lose');
+      //+ reset clicked status
+      setImage(
+        (old) => [...old],
+        images.forEach((image) => {
+          {
+            image.clicked = false;
+          }
+        })
+      );
+      reset();
     }
     console.log(images);
   };
@@ -64,7 +83,11 @@ const CardFactory = () => {
   });
 
   //
-  return <div className="factory">{cards}</div>;
+  return (
+    <div>
+      <h1>{score}</h1> <div className="factory">{cards}</div>
+    </div>
+  );
 };
 
 export default CardFactory;
