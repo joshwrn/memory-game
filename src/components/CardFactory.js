@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import uniqid from 'uniqid';
 import Card from './Card';
 import one from '../img/one.png';
@@ -13,22 +13,23 @@ import nine from '../img/nine.jpeg';
 import ten from '../img/ten.png';
 
 let initial = [
-  { imageSrc: one, imageName: 0, clicked: false },
-  { imageSrc: two, imageName: 1, clicked: false },
-  { imageSrc: three, imageName: 2, clicked: false },
-  { imageSrc: four, imageName: 3, clicked: false },
-  { imageSrc: five, imageName: 4, clicked: false },
-  { imageSrc: six, imageName: 5, clicked: false },
-  { imageSrc: seven, imageName: 6, clicked: false },
-  { imageSrc: eight, imageName: 7, clicked: false },
-  { imageSrc: nine, imageName: 8, clicked: false },
-  { imageSrc: ten, imageName: 9, clicked: false },
+  { imageSrc: one, imageName: 'one', clicked: false },
+  { imageSrc: two, imageName: 'two', clicked: false },
+  { imageSrc: three, imageName: 'three', clicked: false },
+  { imageSrc: four, imageName: 'four', clicked: false },
+  { imageSrc: five, imageName: 'five', clicked: false },
+  { imageSrc: six, imageName: 'six', clicked: false },
+  { imageSrc: seven, imageName: 'seven', clicked: false },
+  { imageSrc: eight, imageName: 'eight', clicked: false },
+  { imageSrc: nine, imageName: 'nine', clicked: false },
+  { imageSrc: ten, imageName: 'ten', clicked: false },
 ];
 
 const CardFactory = () => {
   const [images, setImage] = useState(initial);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [color] = useState('');
   //+ add score
   function increment() {
     setScore((prevCount) => prevCount + 1);
@@ -40,8 +41,10 @@ const CardFactory = () => {
   }
 
   function updateHighScore() {
-    if (score === highScore) {
+    if (score === highScore && score < 10) {
       setHighScore((prevCount) => prevCount + 1);
+    } else if (score === 10) {
+      setHighScore('You Win');
     }
   }
 
@@ -55,19 +58,23 @@ const CardFactory = () => {
     }
   };
 
-  //+ state
-  // useEffect(() => {
-  //   shuffleArray(images);
-  // }, []);
+  const addColor = () => {
+    const selectedDiv = document.getElementsByTagName('HTML')[0];
+    selectedDiv.style.setProperty('animation', 'red-bg .5s linear 1');
+    setTimeout(function () {
+      selectedDiv.style.setProperty('animation', '');
+    }, 1000);
+  };
 
   //? click
   const handleClick = (e) => {
     e.preventDefault();
     //+ elements
     const imageNameAtt = e.target.getAttribute('data-image-name');
+
     //+ get image index
     const findImage = images.findIndex(
-      (image) => image.imageName === Number(imageNameAtt)
+      (image) => image.imageName === imageNameAtt
     );
     if (images[findImage].clicked === false) {
       //+ set images as clicked with the correct index
@@ -91,7 +98,9 @@ const CardFactory = () => {
         })
       );
       reset();
+      addColor();
     }
+
     console.log(images);
   };
 
@@ -110,7 +119,7 @@ const CardFactory = () => {
 
   //
   return (
-    <div className="board">
+    <div id="board">
       <h1>Memory Game</h1>
       <div className="scoreBoard">
         <p className="score">High Score: {highScore}</p>

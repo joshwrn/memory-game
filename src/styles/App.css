@@ -25,7 +25,7 @@ html {
   color: white;
 }
 
-.board {
+#board {
   display: grid;
   grid-template-rows: 3em 3em 1fr;
   text-align: center;
@@ -88,4 +88,30 @@ html {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+/*! animation */
+
+@keyframes shake {
+  0% {
+    transform: translate(0em);
+  }
+  50% {
+    transform: translate(-0.5em);
+  }
+  100% {
+    transform: translate(0em);
+  }
+}
+
+@keyframes red-bg {
+  0% {
+    background-color: #282c34;
+  }
+  50% {
+    background-color: #7c0000;
+  }
+  100% {
+    background-color: #282c34;
+  }
 }
