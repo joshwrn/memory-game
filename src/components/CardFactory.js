@@ -41,9 +41,9 @@ const CardFactory = () => {
   }
 
   function updateHighScore() {
-    if (score === highScore && score < 10) {
+    if (score === highScore && score < 9) {
       setHighScore((prevCount) => prevCount + 1);
-    } else if (score === 10) {
+    } else if (score === 9) {
       setHighScore('You Win');
     }
   }
