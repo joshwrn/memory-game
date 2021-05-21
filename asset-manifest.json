@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/memory-game/static/css/main.e3559fbb.chunk.css",
+    "main.js": "/memory-game/static/js/main.3eccc27d.chunk.js",
+    "main.js.map": "/memory-game/static/js/main.3eccc27d.chunk.js.map",
+    "runtime-main.js": "/memory-game/static/js/runtime-main.d9e6c5df.js",
+    "runtime-main.js.map": "/memory-game/static/js/runtime-main.d9e6c5df.js.map",
+    "static/js/2.319f242c.chunk.js": "/memory-game/static/js/2.319f242c.chunk.js",
+    "static/js/2.319f242c.chunk.js.map": "/memory-game/static/js/2.319f242c.chunk.js.map",
+    "static/js/3.480c55fa.chunk.js": "/memory-game/static/js/3.480c55fa.chunk.js",
+    "static/js/3.480c55fa.chunk.js.map": "/memory-game/static/js/3.480c55fa.chunk.js.map",
+    "index.html": "/memory-game/index.html",
+    "static/css/main.e3559fbb.chunk.css.map": "/memory-game/static/css/main.e3559fbb.chunk.css.map",
+    "static/js/2.319f242c.chunk.js.LICENSE.txt": "/memory-game/static/js/2.319f242c.chunk.js.LICENSE.txt",
+    "static/media/eight.785832c0.jpeg": "/memory-game/static/media/eight.785832c0.jpeg",
+    "static/media/five.88ba0297.jpeg": "/memory-game/static/media/five.88ba0297.jpeg",
+    "static/media/four.47bbe5de.jpeg": "/memory-game/static/media/four.47bbe5de.jpeg",
+    "static/media/nine.e893cdf3.jpeg": "/memory-game/static/media/nine.e893cdf3.jpeg",
+    "static/media/one.fe20c8d2.png": "/memory-game/static/media/one.fe20c8d2.png",
+    "static/media/seven.1e153dce.jpeg": "/memory-game/static/media/seven.1e153dce.jpeg",
+    "static/media/six.1f84d973.jpeg": "/memory-game/static/media/six.1f84d973.jpeg",
+    "static/media/ten.27b42260.png": "/memory-game/static/media/ten.27b42260.png",
+    "static/media/three.b7a5f8e4.png": "/memory-game/static/media/three.b7a5f8e4.png",
+    "static/media/two.73303d19.jpeg": "/memory-game/static/media/two.73303d19.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d9e6c5df.js",
+    "static/js/2.319f242c.chunk.js",
+    "static/css/main.e3559fbb.chunk.css",
+    "static/js/main.3eccc27d.chunk.js"
+  ]
+}
