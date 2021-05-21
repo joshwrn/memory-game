@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import uniqid from 'uniqid';
 import Card from './Card';
 import one from '../img/one.png';
@@ -40,50 +40,54 @@ const CardFactory = () => {
   }
 
   function updateHighScore() {
-    if (score + 1 > highScore) {
+    if (score === highScore) {
       setHighScore((prevCount) => prevCount + 1);
     }
   }
 
   //+ Randomize array in-place using Durstenfeld shuffle algorithm */
-  function shuffleArray(array) {
+  const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = array[i];
       array[i] = array[j];
       array[j] = temp;
     }
-  }
+  };
+
+  //+ state
+  // useEffect(() => {
+  //   shuffleArray(images);
+  // }, []);
 
   //? click
   const handleClick = (e) => {
     e.preventDefault();
     //+ elements
-    const chosen = e.target.getAttribute('data-chosen');
     const imageNameAtt = e.target.getAttribute('data-image-name');
     //+ get image index
     const findImage = images.findIndex(
       (image) => image.imageName === Number(imageNameAtt)
     );
     if (images[findImage].clicked === false) {
-      //+ set images with the correct index
-      setImage((old) => [...old], {
-        [images[findImage]]: (images[findImage].clicked = true),
-      });
+      //+ set images as clicked with the correct index
+      setImage(
+        (old) => [...old],
+        {
+          [images[findImage]]: (images[findImage].clicked = true),
+        },
+        shuffleArray(images)
+      );
       //+ set high score
       updateHighScore();
       //+ set current score
       increment();
-      //+ shuffle cards
-      setImage((old) => [...old], shuffleArray(images));
     } else {
       //+ reset clicked status
       setImage(
         (old) => [...old],
         images.forEach((image) => {
-          {
-            image.clicked = false;
-          }
+          image.clicked = false;
         })
       );
       reset();
@@ -106,9 +110,12 @@ const CardFactory = () => {
 
   //
   return (
-    <div>
-      <h1>High Score: {highScore}</h1>
-      <h1>Current Score: {score}</h1>
+    <div className="board">
+      <h1>Memory Game</h1>
+      <div className="scoreBoard">
+        <p className="score">High Score: {highScore}</p>
+        <p className="score">Current Score: {score}</p>
+      </div>
       <div className="factory">{cards}</div>
     </div>
   );

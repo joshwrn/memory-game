@@ -3,7 +3,7 @@ import CardFactory from './CardFactory';
 
 const Board = () => {
   return (
-    <div className="board">
+    <div>
       <CardFactory />
     </div>
   );

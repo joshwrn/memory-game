@@ -26,6 +26,21 @@ html {
 }
 
 .board {
+  display: grid;
+  grid-template-rows: 3em 3em 1fr;
+  text-align: center;
+  justify-items: center;
+  align-items: center;
+  padding-top: 2em;
+}
+
+.scoreBoard {
+  display: flex;
+  text-align: center;
+}
+
+.score {
+  padding: 1em;
 }
 
 .factory {
@@ -35,7 +50,7 @@ html {
   text-align: center;
   width: 100%;
   margin: 0;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 0;
   padding: 0;
