@@ -28,6 +28,7 @@ let initial = [
 const CardFactory = () => {
   const [images, setImage] = useState(initial);
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
   //+ add score
   function increment() {
     setScore((prevCount) => prevCount + 1);
@@ -36,6 +37,22 @@ const CardFactory = () => {
   //+reset score
   function reset() {
     setScore((prevCount) => prevCount - prevCount);
+  }
+
+  function updateHighScore() {
+    if (score + 1 > highScore) {
+      setHighScore((prevCount) => prevCount + 1);
+    }
+  }
+
+  //+ Randomize array in-place using Durstenfeld shuffle algorithm */
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
   }
 
   //? click
@@ -53,7 +70,12 @@ const CardFactory = () => {
       setImage((old) => [...old], {
         [images[findImage]]: (images[findImage].clicked = true),
       });
+      //+ set high score
+      updateHighScore();
+      //+ set current score
       increment();
+      //+ shuffle cards
+      setImage((old) => [...old], shuffleArray(images));
     } else {
       //+ reset clicked status
       setImage(
@@ -85,7 +107,9 @@ const CardFactory = () => {
   //
   return (
     <div>
-      <h1>{score}</h1> <div className="factory">{cards}</div>
+      <h1>High Score: {highScore}</h1>
+      <h1>Current Score: {score}</h1>
+      <div className="factory">{cards}</div>
     </div>
   );
 };
